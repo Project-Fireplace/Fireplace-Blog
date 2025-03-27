@@ -5,15 +5,16 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth; /* For smooth "Back to Top" link */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4; /* Light background for content */
     color: #333;
-    /* IMPORTANT: Add padding to the bottom of the body */
-    /* This prevents content at the very end from being permanently */
-    /* hidden behind the fixed footer. Adjust height as needed. */
-    padding-bottom: 100px;
+    padding-bottom: 100px; /* Prevents content hiding behind fixed footer */
 }
 
 .container {
@@ -30,13 +31,6 @@ a {
 
 a:hover {
     text-decoration: underline;
-}
-
-img.post-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 15px;
-    border-radius: 5px;
 }
 
 /* --- Header --- */
@@ -82,59 +76,42 @@ header nav a:hover {
     text-decoration: none;
 }
 
-/* --- Main Content & Blog Posts --- */
+/* --- Main Content --- */
 main {
     padding-top: 30px;
 }
 
-.blog-post {
-    background: #fff;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* --- Info Box --- */
+.info-box {
+    background: #ffffff; /* White background */
+    padding: 35px 40px; /* Generous padding */
+    margin: 40px auto; /* Centered with vertical margin */
+    border-radius: 15px; /* Curved corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: center; /* Center align content */
+    max-width: 700px; /* Limit width for better readability */
+
+    /* Transition for hover effect */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.blog-post h2 {
+.info-box:hover {
+    transform: scale(1.04); /* Enlarge slightly on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Increase shadow on hover */
+}
+
+.info-title {
+    font-size: 2.2em; /* Larger title */
     color: #333;
-    margin-bottom: 10px;
-}
-
-.post-meta {
-    font-size: 0.9em;
-    color: #777;
-    margin-bottom: 15px;
-    border-bottom: 1px dotted #ccc;
-    padding-bottom: 10px;
-}
-
-.blog-post p {
     margin-bottom: 15px;
 }
 
-.blog-post ul {
-    margin-left: 20px;
-    margin-bottom: 15px;
-}
-.blog-post li {
-    margin-bottom: 8px;
+.info-text {
+    font-size: 1.1em; /* Slightly larger than default text */
+    color: #555; /* Slightly lighter text color */
+    line-height: 1.7;
 }
 
-.read-more {
-    display: inline-block;
-    background: #c75c13;
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.read-more:hover {
-    background: #a04a10; /* Darker shade on hover */
-    text-decoration: none;
-    color: #fff;
-}
 
 /* --- Footer --- */
 footer {
@@ -142,20 +119,14 @@ footer {
     bottom: 0;              /* Align to the bottom */
     left: 0;                /* Align to the left */
     width: 100%;            /* Take full width */
-
-    /* The Key Part: Dark Background with Transparency */
-    background-color: rgba(15, 15, 15, 0.85); /* Very dark grey, 85% opaque (adjust 0.85 as needed) */
-
-    color: #ccc;            /* Light text color for readability */
+    background-color: rgba(15, 15, 15, 0.85); /* Dark Transparent */
+    color: #ccc;            /* Light text color */
     padding: 15px 0;        /* Vertical padding */
     text-align: center;
     font-size: 0.9em;
-    z-index: 1000;          /* Ensure footer stays on top of other content */
-
-    /* Optional: Add a subtle blur effect to the content behind */
-    /* Requires browser support, but degrades gracefully */
+    z-index: 1000;          /* Ensure footer stays on top */
     backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px); /* For Safari */
+    -webkit-backdrop-filter: blur(4px);
 }
 
 footer p {
@@ -163,7 +134,7 @@ footer p {
 }
 
 footer a {
-    color: #aaa; /* Slightly lighter links in footer */
+    color: #aaa;
 }
 
 footer a:hover {
@@ -181,12 +152,21 @@ footer a:hover {
     .container {
         padding: 0 15px;
     }
-     /* Adjust body padding for smaller footer maybe? */
     body {
-        padding-bottom: 120px; /* Example: Increase if footer wraps */
+        padding-bottom: 120px; /* May need more space for wrapped footer */
     }
     footer {
         padding: 10px 0;
         font-size: 0.8em;
+    }
+    .info-box {
+        padding: 25px 20px;
+        margin: 30px auto;
+    }
+    .info-title {
+        font-size: 1.8em;
+    }
+    .info-text {
+        font-size: 1em;
     }
 }
