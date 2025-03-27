@@ -1,0 +1,192 @@
+/* --- General Styles & Resets --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4; /* Light background for content */
+    color: #333;
+    /* IMPORTANT: Add padding to the bottom of the body */
+    /* This prevents content at the very end from being permanently */
+    /* hidden behind the fixed footer. Adjust height as needed. */
+    padding-bottom: 100px;
+}
+
+.container {
+    max-width: 960px;
+    margin: auto;
+    overflow: hidden; /* Clears floats */
+    padding: 0 20px;
+}
+
+a {
+    color: #c75c13; /* Fireplace-themed orange link */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img.post-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* --- Header --- */
+header {
+    background: #2c2c2c; /* Dark header */
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 4px solid #c75c13; /* Accent color */
+}
+
+header h1 {
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 2.5em;
+}
+
+header p {
+    text-align: center;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+header nav {
+    text-align: center;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav a {
+    color: #fff;
+    font-weight: bold;
+}
+header nav a:hover {
+    color: #c75c13;
+    text-decoration: none;
+}
+
+/* --- Main Content & Blog Posts --- */
+main {
+    padding-top: 30px;
+}
+
+.blog-post {
+    background: #fff;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.blog-post h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 10px;
+}
+
+.blog-post p {
+    margin-bottom: 15px;
+}
+
+.blog-post ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+.blog-post li {
+    margin-bottom: 8px;
+}
+
+.read-more {
+    display: inline-block;
+    background: #c75c13;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+    background: #a04a10; /* Darker shade on hover */
+    text-decoration: none;
+    color: #fff;
+}
+
+/* --- Footer --- */
+footer {
+    position: fixed;        /* Stick to the viewport */
+    bottom: 0;              /* Align to the bottom */
+    left: 0;                /* Align to the left */
+    width: 100%;            /* Take full width */
+
+    /* The Key Part: Dark Background with Transparency */
+    background-color: rgba(15, 15, 15, 0.85); /* Very dark grey, 85% opaque (adjust 0.85 as needed) */
+
+    color: #ccc;            /* Light text color for readability */
+    padding: 15px 0;        /* Vertical padding */
+    text-align: center;
+    font-size: 0.9em;
+    z-index: 1000;          /* Ensure footer stays on top of other content */
+
+    /* Optional: Add a subtle blur effect to the content behind */
+    /* Requires browser support, but degrades gracefully */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px); /* For Safari */
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+footer a {
+    color: #aaa; /* Slightly lighter links in footer */
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+/* --- Responsive (Basic Example) --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    header nav ul li {
+        margin: 0 10px;
+    }
+    .container {
+        padding: 0 15px;
+    }
+     /* Adjust body padding for smaller footer maybe? */
+    body {
+        padding-bottom: 120px; /* Example: Increase if footer wraps */
+    }
+    footer {
+        padding: 10px 0;
+        font-size: 0.8em;
+    }
+}
