@@ -10,18 +10,25 @@ html {
 }
 
 :root {
-    /* Define theme colors for easier management */
+    /* Theme Colors */
     --bg-light: #f4f4f4;
     --text-light: #333;
     --card-bg-light: #ffffff;
     --card-text-light: #555;
     --shadow-light: rgba(0, 0, 0, 0.1);
+    --placeholder-bg-light1: #eee;
+    --placeholder-bg-light2: #e5e5e5;
+    --placeholder-text-light: #555;
 
-    --bg-dark: #1a1a1a; /* Dark background */
-    --text-dark: #e0e0e0; /* Light text for dark mode */
-    --card-bg-dark: #2c2c2c; /* Darker card background */
+    --bg-dark: #1a1a1a;
+    --text-dark: #e0e0e0;
+    --card-bg-dark: #2c2c2c;
     --card-text-dark: #cccccc;
     --shadow-dark: rgba(255, 255, 255, 0.1);
+    --placeholder-bg-dark1: #2a2a2a;
+    --placeholder-bg-dark2: #333;
+    --placeholder-text-dark: #aaa;
+
 
     --primary-color: #c75c13; /* Orange theme color */
     --header-text: #fff;
@@ -29,19 +36,22 @@ html {
 
     /* Transitions */
     --transition-speed: 0.3s;
+
+    /* Header Height (approximate, adjust if content changes) */
+    --header-height: 130px;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    /* Default Light Mode */
     background-color: var(--bg-light);
     color: var(--text-light);
-    padding-bottom: 80px;
+    /* Remove bottom padding - footer is fixed but only visible sometimes */
+    /* padding-bottom: 80px;  <-- REMOVED */
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
-/* --- Dark Mode Styles --- */
+/* Dark Mode Styles */
 body.dark-mode {
     background-color: var(--bg-dark);
     color: var(--text-dark);
@@ -62,22 +72,34 @@ a {
 }
 a:hover {
     text-decoration: underline;
-    /* Slightly different hover in dark if needed */
-    /* body.dark-mode a:hover { color: #e87a33; } */
 }
 
-/* --- Header --- */
+/* --- Header (STICKY/FIXED) --- */
 header {
     background: var(--primary-color);
     color: var(--header-text);
-    padding-top: 20px; /* Keep padding for content */
-    padding-bottom: 10px;
-    position: relative; /* Needed for absolute positioning of the button */
+    padding: 15px 0 10px 0; /* Adjusted padding slightly */
+    /* Make header fixed */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001; /* Ensure it's above other content */
     transition: background-color var(--transition-speed) ease;
+    min-height: var(--header-height); /* Ensure it has a minimum height */
+    display: flex; /* Use flex to help align button and container */
+    align-items: center; /* Vertically align items if needed */
 }
-/* Example: Dark mode header style variation if needed */
-/* body.dark-mode header { background: #a04a10; } */
 
+/* Adjust header container padding */
+header .container {
+    position: relative; /* Context for nav potentially */
+    padding-top: 10px; /* Add some space above title */
+    padding-bottom: 5px;
+    margin: 0 auto; /* Center the main content container */
+    width: 100%; /* Allow container to take width */
+    max-width: 960px; /* But limit it */
+}
 
 header h1 {
     text-align: center;
@@ -87,7 +109,7 @@ header h1 {
 
 header p {
     text-align: center;
-    color: #f0f0f0; /* Keep light on orange */
+    color: #f0f0f0;
     margin-bottom: 15px;
 }
 
@@ -110,52 +132,48 @@ header nav a {
     transition: color var(--transition-speed) ease;
 }
 header nav a:hover {
-    color: #2c2c2c; /* Dark hover on light header */
-    text-decoration: none;
+    color: #2c2c2c;
 }
 body.dark-mode header nav a:hover {
-     color: #fff; /* Light hover if header bg changes in dark mode */
+     color: #fff;
 }
 
 /* --- Theme Toggle Button --- */
 #theme-toggle {
-    position: absolute;
-    top: 15px;  /* Adjust as needed */
-    left: 15px; /* Adjust as needed */
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white on orange */
+    position: absolute; /* Position relative to the header */
+    top: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.2);
     color: var(--header-text);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%; /* Make it circular */
+    border-radius: 50%;
     width: 40px;
     height: 40px;
-    font-size: 1.2em; /* Adjust emoji size */
+    font-size: 1.2em;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
-    z-index: 10; /* Ensure it's above other content */
+    z-index: 1002; /* Higher than header content */
 }
 #theme-toggle:hover {
     background: rgba(255, 255, 255, 0.4);
-}
-/* Dark mode styling for the button if needed */
-body.dark-mode #theme-toggle {
-     /* Example: Slightly different look if header changes */
-    /* background: rgba(0, 0, 0, 0.3); */
-    /* border-color: rgba(255, 255, 255, 0.7); */
 }
 
 
 /* --- Main Content --- */
 main {
-    padding-top: 30px;
+    /* Add padding-top equal to header height to prevent overlap */
+    padding-top: var(--header-height);
+    /* Add padding-bottom to ensure last content isn't hidden by APPEARING footer */
+    padding-bottom: 100px;
 }
 
 /* --- Info Box --- */
 .info-box {
     background: var(--card-bg-light);
-    color: var(--text-light); /* Title color will inherit this */
+    color: var(--text-light);
     padding: 35px 40px;
     margin: 40px auto;
     border-radius: 15px;
@@ -180,7 +198,6 @@ body.dark-mode .info-box:hover {
 
 .info-title {
     font-size: 2.2em;
-    /* color inherits from .info-box */
     margin-bottom: 15px;
 }
 
@@ -196,11 +213,20 @@ body.dark-mode .info-text {
 
 /* Placeholder scroll styling */
 .scroll-placeholder {
-     /* Adjust background for dark mode */
-     transition: background var(--transition-speed) ease;
+    background: repeating-linear-gradient( 45deg, var(--placeholder-bg-light1), var(--placeholder-bg-light1) 10px, var(--placeholder-bg-light2) 10px, var(--placeholder-bg-light2) 20px );
+    color: var(--placeholder-text-light);
+    transition: background var(--transition-speed) ease, color var(--transition-speed);
 }
+.scroll-placeholder p {
+     background: var(--bg-light);
+     padding: 10px;
+     border-radius: 5px;
+     transition: background var(--transition-speed) ease, color var(--transition-speed);
+}
+
 body.dark-mode .scroll-placeholder {
-     background: repeating-linear-gradient( 45deg, #2a2a2a, #2a2a2a 10px, #333 10px, #333 20px );
+     background: repeating-linear-gradient( 45deg, var(--placeholder-bg-dark1), var(--placeholder-bg-dark1) 10px, var(--placeholder-bg-dark2) 10px, var(--placeholder-bg-dark2) 20px );
+     color: var(--placeholder-text-dark);
 }
 body.dark-mode .scroll-placeholder p {
     background: var(--card-bg-dark);
@@ -208,8 +234,8 @@ body.dark-mode .scroll-placeholder p {
 }
 
 
-/* --- Footer --- */
-footer {
+/* --- Footer (HIDDEN INITIALLY) --- */
+footer#site-footer { /* Use ID for specificity if needed */
     position: fixed;
     bottom: 0;
     left: 0;
@@ -222,11 +248,20 @@ footer {
     z-index: 1000;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    transition: background-color var(--transition-speed) ease;
-}
-/* Optional: Different footer style in dark mode */
-/* body.dark-mode footer { background-color: rgba(160, 74, 16, 0.9); } */
 
+    /* Initial hidden state */
+    opacity: 0;
+    transform: translateY(100%); /* Move below viewport */
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* Class added by JS when footer should be visible */
+footer#site-footer.footer-visible {
+    opacity: 1;
+    transform: translateY(0); /* Move back into view */
+    pointer-events: auto; /* Allow interaction when visible */
+}
 
 footer p {
     margin-bottom: 5px;
@@ -244,14 +279,14 @@ footer a.back-to-top:hover {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
+    :root {
+         /* Adjust header height for smaller screens if needed */
+        --header-height: 110px;
+    }
+
     header h1 { font-size: 2em; }
     header nav ul li { margin: 0 10px; }
     .container { padding: 0 15px; }
-    body { padding-bottom: 100px; }
-    footer { padding: 10px 0; font-size: 0.8em; }
-    .info-box { padding: 25px 20px; margin: 30px auto; }
-    .info-title { font-size: 1.8em; }
-    .info-text { font-size: 1em; }
 
     #theme-toggle {
         top: 10px;
@@ -260,10 +295,30 @@ footer a.back-to-top:hover {
         height: 35px;
         font-size: 1em;
     }
-    /* Adjust header padding if button overlaps content on small screens */
-    header .container { padding-top: 45px; } /* Push content below button */
+    /* Ensure header container respects button space */
+     header .container {
+        padding-left: 55px; /* Space for button */
+        padding-right: 15px;
+    }
+
+
+    footer { padding: 10px 0; font-size: 0.8em; }
+    .info-box { padding: 25px 20px; margin: 30px auto; }
+    .info-title { font-size: 1.8em; }
+    .info-text { font-size: 1em; }
+
+     main {
+        padding-bottom: 80px; /* Adjust main padding bottom if needed */
+    }
 }
 @media (max-width: 480px) {
-    header .container { padding-top: 50px; } /* More padding if needed */
+     :root {
+        --header-height: 100px; /* Even smaller header */
+    }
      header h1 { font-size: 1.8em; }
+     header p { font-size: 0.9em; margin-bottom: 10px;}
+     header nav ul li { margin: 0 5px; } /* Tighter spacing */
+     header .container {
+        padding-left: 50px;
+     }
 }
