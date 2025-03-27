@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fireplace-Blog</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Deferred script loading -->
+    <script src="script.js" defer></script>
 </head>
+<!-- Body tag will get a 'dark-mode' class added by JS -->
 <body>
+    <div id="top"></div>
 
     <header>
+        <!-- Theme Toggle Button Added Here -->
+        <button id="theme-toggle" aria-label="Toggle Light/Dark Theme">
+            <!-- Initial icon (will be changed by JS) -->
+            🌙
+        </button>
+
         <div class="container">
             <h1>Fireplace-Blog</h1>
-            <!-- Updated tagline to reflect new focus -->
             <p>Journeys into code and the web</p>
             <nav>
                 <ul>
@@ -25,28 +34,20 @@
     </header>
 
     <main class="container">
-        <!-- New Info Box Section -->
         <div class="info-box">
             <h2 class="info-title">Blog info</h2>
-            <p class="info-text">welcome, to fireplace blog a place we share all our journeys and adventures into code and information you never knew about the internet or code</p>
+            <p class="info-text">Welcome, to fireplace blog a place we share all our journeys and adventures into code and information you never knew about the internet or code</p>
         </div>
 
-        <!-- You can add future blog post previews or other content here -->
-         <!-- Placeholder content to ensure scrolling is still possible to see footer transparency -->
-         <div style="height: 800px; background: repeating-linear-gradient( 45deg, #eee, #eee 10px, #e5e5e5 10px, #e5e5e5 20px ); margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #555; border-radius: 5px;">
+        <div style="height: 800px; background: repeating-linear-gradient( 45deg, #eee, #eee 10px, #e5e5e5 10px, #e5e5e5 20px ); margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #555; border-radius: 5px;" class="scroll-placeholder">
             <p style="background: #f4f4f4; padding: 10px; border-radius: 5px;">Scrollable content area...</p>
         </div>
-
     </main>
 
     <footer>
         <div class="container">
-            <p>© 2023 Fireplace-Blog. All rights reserved.</p>
-            <p>
-                <a href="#">Privacy Policy</a> |
-                <a href="#">Terms of Service</a> |
-                <a href="#top">Back to Top</a> <!-- Link to top of page -->
-            </p>
+            <p>Fireplace Blog ©</p>
+             <p><a href="#top" class="back-to-top">Back to Top</a></p>
         </div>
     </footer>
 
