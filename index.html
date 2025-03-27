@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fireplace-Blog</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Deferred script loading -->
+    <!-- Ensure script is deferred -->
     <script src="script.js" defer></script>
 </head>
-<!-- Body tag will get a 'dark-mode' class added by JS -->
+<!-- Body tag will get a 'dark-mode' class added/removed by JS -->
 <body>
     <div id="top"></div>
 
     <header>
-        <!-- Theme Toggle Button Added Here -->
         <button id="theme-toggle" aria-label="Toggle Light/Dark Theme">
-            <!-- Initial icon (will be changed by JS) -->
-            🌙
+            🌙 <!-- Initial icon -->
         </button>
 
         <div class="container">
@@ -39,12 +37,14 @@
             <p class="info-text">Welcome, to fireplace blog a place we share all our journeys and adventures into code and information you never knew about the internet or code</p>
         </div>
 
-        <div style="height: 800px; background: repeating-linear-gradient( 45deg, #eee, #eee 10px, #e5e5e5 10px, #e5e5e5 20px ); margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #555; border-radius: 5px;" class="scroll-placeholder">
+        <!-- Increased height for better scroll testing -->
+        <div style="height: 1500px; background: repeating-linear-gradient( 45deg, #eee, #eee 10px, #e5e5e5 10px, #e5e5e5 20px ); margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #555; border-radius: 5px;" class="scroll-placeholder">
             <p style="background: #f4f4f4; padding: 10px; border-radius: 5px;">Scrollable content area...</p>
         </div>
     </main>
 
-    <footer>
+    <!-- Added ID to footer for JS targeting -->
+    <footer id="site-footer">
         <div class="container">
             <p>Fireplace Blog ©</p>
              <p><a href="#top" class="back-to-top">Back to Top</a></p>
