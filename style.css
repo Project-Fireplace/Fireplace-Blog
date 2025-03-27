@@ -6,41 +6,78 @@
 }
 
 html {
-    scroll-behavior: smooth; /* For smooth "Back to Top" link */
+    scroll-behavior: smooth;
+}
+
+:root {
+    /* Define theme colors for easier management */
+    --bg-light: #f4f4f4;
+    --text-light: #333;
+    --card-bg-light: #ffffff;
+    --card-text-light: #555;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+
+    --bg-dark: #1a1a1a; /* Dark background */
+    --text-dark: #e0e0e0; /* Light text for dark mode */
+    --card-bg-dark: #2c2c2c; /* Darker card background */
+    --card-text-dark: #cccccc;
+    --shadow-dark: rgba(255, 255, 255, 0.1);
+
+    --primary-color: #c75c13; /* Orange theme color */
+    --header-text: #fff;
+    --footer-text: #fff;
+
+    /* Transitions */
+    --transition-speed: 0.3s;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4; /* Light background for content */
-    color: #333;
-    padding-bottom: 100px; /* Prevents content hiding behind fixed footer */
+    /* Default Light Mode */
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    padding-bottom: 80px;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
+/* --- Dark Mode Styles --- */
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+/* General Elements */
 .container {
     max-width: 960px;
     margin: auto;
-    overflow: hidden; /* Clears floats */
+    overflow: hidden;
     padding: 0 20px;
 }
 
 a {
-    color: #c75c13; /* Fireplace-themed orange link */
+    color: var(--primary-color);
     text-decoration: none;
+    transition: color var(--transition-speed) ease;
 }
-
 a:hover {
     text-decoration: underline;
+    /* Slightly different hover in dark if needed */
+    /* body.dark-mode a:hover { color: #e87a33; } */
 }
 
 /* --- Header --- */
 header {
-    background: #2c2c2c; /* Dark header */
-    color: #fff;
-    padding-top: 20px;
+    background: var(--primary-color);
+    color: var(--header-text);
+    padding-top: 20px; /* Keep padding for content */
     padding-bottom: 10px;
-    border-bottom: 4px solid #c75c13; /* Accent color */
+    position: relative; /* Needed for absolute positioning of the button */
+    transition: background-color var(--transition-speed) ease;
 }
+/* Example: Dark mode header style variation if needed */
+/* body.dark-mode header { background: #a04a10; } */
+
 
 header h1 {
     text-align: center;
@@ -50,7 +87,7 @@ header h1 {
 
 header p {
     text-align: center;
-    color: #ccc;
+    color: #f0f0f0; /* Keep light on orange */
     margin-bottom: 15px;
 }
 
@@ -68,13 +105,47 @@ header nav ul li {
 }
 
 header nav a {
-    color: #fff;
+    color: var(--header-text);
     font-weight: bold;
+    transition: color var(--transition-speed) ease;
 }
 header nav a:hover {
-    color: #c75c13;
+    color: #2c2c2c; /* Dark hover on light header */
     text-decoration: none;
 }
+body.dark-mode header nav a:hover {
+     color: #fff; /* Light hover if header bg changes in dark mode */
+}
+
+/* --- Theme Toggle Button --- */
+#theme-toggle {
+    position: absolute;
+    top: 15px;  /* Adjust as needed */
+    left: 15px; /* Adjust as needed */
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white on orange */
+    color: var(--header-text);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%; /* Make it circular */
+    width: 40px;
+    height: 40px;
+    font-size: 1.2em; /* Adjust emoji size */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    z-index: 10; /* Ensure it's above other content */
+}
+#theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+/* Dark mode styling for the button if needed */
+body.dark-mode #theme-toggle {
+     /* Example: Slightly different look if header changes */
+    /* background: rgba(0, 0, 0, 0.3); */
+    /* border-color: rgba(255, 255, 255, 0.7); */
+}
+
 
 /* --- Main Content --- */
 main {
@@ -83,90 +154,116 @@ main {
 
 /* --- Info Box --- */
 .info-box {
-    background: #ffffff; /* White background */
-    padding: 35px 40px; /* Generous padding */
-    margin: 40px auto; /* Centered with vertical margin */
-    border-radius: 15px; /* Curved corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    text-align: center; /* Center align content */
-    max-width: 700px; /* Limit width for better readability */
-
-    /* Transition for hover effect */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background: var(--card-bg-light);
+    color: var(--text-light); /* Title color will inherit this */
+    padding: 35px 40px;
+    margin: 40px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    text-align: center;
+    max-width: 700px;
+    transition: transform 0.3s ease-in-out, box-shadow var(--transition-speed) ease-in-out, background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+body.dark-mode .info-box {
+    background: var(--card-bg-dark);
+    color: var(--text-dark);
+    box-shadow: 0 4px 12px var(--shadow-dark);
 }
 
 .info-box:hover {
-    transform: scale(1.04); /* Enlarge slightly on hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Increase shadow on hover */
+    transform: scale(1.04);
+    box-shadow: 0 8px 20px var(--shadow-light);
+}
+body.dark-mode .info-box:hover {
+     box-shadow: 0 8px 20px var(--shadow-dark);
 }
 
 .info-title {
-    font-size: 2.2em; /* Larger title */
-    color: #333;
+    font-size: 2.2em;
+    /* color inherits from .info-box */
     margin-bottom: 15px;
 }
 
 .info-text {
-    font-size: 1.1em; /* Slightly larger than default text */
-    color: #555; /* Slightly lighter text color */
+    font-size: 1.1em;
+    color: var(--card-text-light);
     line-height: 1.7;
+    transition: color var(--transition-speed) ease;
+}
+body.dark-mode .info-text {
+    color: var(--card-text-dark);
+}
+
+/* Placeholder scroll styling */
+.scroll-placeholder {
+     /* Adjust background for dark mode */
+     transition: background var(--transition-speed) ease;
+}
+body.dark-mode .scroll-placeholder {
+     background: repeating-linear-gradient( 45deg, #2a2a2a, #2a2a2a 10px, #333 10px, #333 20px );
+}
+body.dark-mode .scroll-placeholder p {
+    background: var(--card-bg-dark);
+    color: var(--card-text-dark);
 }
 
 
 /* --- Footer --- */
 footer {
-    position: fixed;        /* Stick to the viewport */
-    bottom: 0;              /* Align to the bottom */
-    left: 0;                /* Align to the left */
-    width: 100%;            /* Take full width */
-    background-color: rgba(15, 15, 15, 0.85); /* Dark Transparent */
-    color: #ccc;            /* Light text color */
-    padding: 15px 0;        /* Vertical padding */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(199, 92, 19, 0.85); /* Transparent Orange */
+    color: var(--footer-text);
+    padding: 15px 0;
     text-align: center;
     font-size: 0.9em;
-    z-index: 1000;          /* Ensure footer stays on top */
+    z-index: 1000;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+    transition: background-color var(--transition-speed) ease;
 }
+/* Optional: Different footer style in dark mode */
+/* body.dark-mode footer { background-color: rgba(160, 74, 16, 0.9); } */
+
 
 footer p {
     margin-bottom: 5px;
 }
 
-footer a {
-    color: #aaa;
+footer a.back-to-top {
+    color: #eee;
+    font-size: 0.9em;
 }
-
-footer a:hover {
+footer a.back-to-top:hover {
     color: #fff;
+    text-decoration: underline;
 }
 
-/* --- Responsive (Basic Example) --- */
+
+/* --- Responsive --- */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2em;
-    }
-    header nav ul li {
-        margin: 0 10px;
-    }
-    .container {
-        padding: 0 15px;
-    }
-    body {
-        padding-bottom: 120px; /* May need more space for wrapped footer */
-    }
-    footer {
-        padding: 10px 0;
-        font-size: 0.8em;
-    }
-    .info-box {
-        padding: 25px 20px;
-        margin: 30px auto;
-    }
-    .info-title {
-        font-size: 1.8em;
-    }
-    .info-text {
+    header h1 { font-size: 2em; }
+    header nav ul li { margin: 0 10px; }
+    .container { padding: 0 15px; }
+    body { padding-bottom: 100px; }
+    footer { padding: 10px 0; font-size: 0.8em; }
+    .info-box { padding: 25px 20px; margin: 30px auto; }
+    .info-title { font-size: 1.8em; }
+    .info-text { font-size: 1em; }
+
+    #theme-toggle {
+        top: 10px;
+        left: 10px;
+        width: 35px;
+        height: 35px;
         font-size: 1em;
     }
+    /* Adjust header padding if button overlaps content on small screens */
+    header .container { padding-top: 45px; } /* Push content below button */
+}
+@media (max-width: 480px) {
+    header .container { padding-top: 50px; } /* More padding if needed */
+     header h1 { font-size: 1.8em; }
 }
