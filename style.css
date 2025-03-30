@@ -24,21 +24,21 @@ html {
     --text-dark: #e0e0e0;
     --card-bg-dark: #2c2c2c;
     --card-text-dark: #cccccc;
-    --shadow-dark: rgba(255, 255, 255, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.15); /* Slightly adjusted dark shadow */
     --placeholder-bg-dark1: #2a2a2a;
     --placeholder-bg-dark2: #333;
     --placeholder-text-dark: #aaa;
 
 
-    --primary-color: #c75c13; /* Orange theme color */
+    --primary-color: #c75c13;
     --header-text: #fff;
     --footer-text: #fff;
 
     /* Transitions */
     --transition-speed: 0.3s;
 
-    /* Header Height (approximate, adjust if content changes) */
-    --header-height: 130px;
+    /* Header Height (Increased slightly for safety) */
+    --header-height: 150px; /* ADJUST THIS VALUE if header content changes significantly */
 }
 
 body {
@@ -46,8 +46,6 @@ body {
     line-height: 1.6;
     background-color: var(--bg-light);
     color: var(--text-light);
-    /* Remove bottom padding - footer is fixed but only visible sometimes */
-    /* padding-bottom: 80px;  <-- REMOVED */
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
@@ -61,7 +59,7 @@ body.dark-mode {
 .container {
     max-width: 960px;
     margin: auto;
-    overflow: hidden;
+    overflow: visible; /* Allow potential box shadows to show fully */
     padding: 0 20px;
 }
 
@@ -78,27 +76,25 @@ a:hover {
 header {
     background: var(--primary-color);
     color: var(--header-text);
-    padding: 15px 0 10px 0; /* Adjusted padding slightly */
-    /* Make header fixed */
+    padding: 15px 0 10px 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1001; /* Ensure it's above other content */
+    z-index: 1001;
     transition: background-color var(--transition-speed) ease;
-    min-height: var(--header-height); /* Ensure it has a minimum height */
-    display: flex; /* Use flex to help align button and container */
-    align-items: center; /* Vertically align items if needed */
+    min-height: var(--header-height); /* Use min-height based on variable */
+    display: flex;
+    align-items: center;
 }
 
-/* Adjust header container padding */
 header .container {
-    position: relative; /* Context for nav potentially */
-    padding-top: 10px; /* Add some space above title */
+    position: relative;
+    padding-top: 10px;
     padding-bottom: 5px;
-    margin: 0 auto; /* Center the main content container */
-    width: 100%; /* Allow container to take width */
-    max-width: 960px; /* But limit it */
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
 }
 
 header h1 {
@@ -132,7 +128,7 @@ header nav a {
     transition: color var(--transition-speed) ease;
 }
 header nav a:hover {
-    color: #2c2c2c;
+    color: #2c2c2c; /* Darker hover on light header */
 }
 body.dark-mode header nav a:hover {
      color: #fff;
@@ -140,7 +136,7 @@ body.dark-mode header nav a:hover {
 
 /* --- Theme Toggle Button --- */
 #theme-toggle {
-    position: absolute; /* Position relative to the header */
+    position: absolute;
     top: 15px;
     left: 15px;
     background: rgba(255, 255, 255, 0.2);
@@ -155,7 +151,7 @@ body.dark-mode header nav a:hover {
     align-items: center;
     justify-content: center;
     transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
-    z-index: 1002; /* Higher than header content */
+    z-index: 1002;
 }
 #theme-toggle:hover {
     background: rgba(255, 255, 255, 0.4);
@@ -164,18 +160,18 @@ body.dark-mode header nav a:hover {
 
 /* --- Main Content --- */
 main {
-    /* Add padding-top equal to header height to prevent overlap */
+    /* Ensure padding-top correctly uses the variable */
     padding-top: var(--header-height);
     /* Add padding-bottom to ensure last content isn't hidden by APPEARING footer */
-    padding-bottom: 100px;
+    padding-bottom: 100px; /* Adjust if footer height changes */
 }
 
 /* --- Info Box --- */
 .info-box {
     background: var(--card-bg-light);
-    color: var(--text-light);
+    color: var(--text-light); /* Base text color for the box */
     padding: 35px 40px;
-    margin: 40px auto;
+    margin: 40px auto; /* This margin is relative to the main container */
     border-radius: 15px;
     box-shadow: 0 4px 12px var(--shadow-light);
     text-align: center;
@@ -184,7 +180,7 @@ main {
 }
 body.dark-mode .info-box {
     background: var(--card-bg-dark);
-    color: var(--text-dark);
+    color: var(--text-dark); /* Base text color for dark mode box */
     box-shadow: 0 4px 12px var(--shadow-dark);
 }
 
@@ -198,17 +194,18 @@ body.dark-mode .info-box:hover {
 
 .info-title {
     font-size: 2.2em;
+    /* color will inherit from .info-box */
     margin-bottom: 15px;
 }
 
 .info-text {
     font-size: 1.1em;
-    color: var(--card-text-light);
+    color: var(--card-text-light); /* Specific color for paragraph */
     line-height: 1.7;
     transition: color var(--transition-speed) ease;
 }
 body.dark-mode .info-text {
-    color: var(--card-text-dark);
+    color: var(--card-text-dark); /* Specific dark mode color */
 }
 
 /* Placeholder scroll styling */
@@ -219,6 +216,7 @@ body.dark-mode .info-text {
 }
 .scroll-placeholder p {
      background: var(--bg-light);
+     color: var(--text-light); /* Use base text color */
      padding: 10px;
      border-radius: 5px;
      transition: background var(--transition-speed) ease, color var(--transition-speed);
@@ -229,13 +227,13 @@ body.dark-mode .scroll-placeholder {
      color: var(--placeholder-text-dark);
 }
 body.dark-mode .scroll-placeholder p {
-    background: var(--card-bg-dark);
-    color: var(--card-text-dark);
+    background: var(--card-bg-dark); /* Use card background for contrast */
+    color: var(--text-dark); /* Use base dark text color */
 }
 
 
 /* --- Footer (HIDDEN INITIALLY) --- */
-footer#site-footer { /* Use ID for specificity if needed */
+footer#site-footer {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -248,19 +246,16 @@ footer#site-footer { /* Use ID for specificity if needed */
     z-index: 1000;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-
-    /* Initial hidden state */
     opacity: 0;
-    transform: translateY(100%); /* Move below viewport */
+    transform: translateY(100%);
     transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-    pointer-events: none; /* Prevent interaction when hidden */
+    pointer-events: none;
 }
 
-/* Class added by JS when footer should be visible */
 footer#site-footer.footer-visible {
     opacity: 1;
-    transform: translateY(0); /* Move back into view */
-    pointer-events: auto; /* Allow interaction when visible */
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 footer p {
@@ -280,8 +275,8 @@ footer a.back-to-top:hover {
 /* --- Responsive --- */
 @media (max-width: 768px) {
     :root {
-         /* Adjust header height for smaller screens if needed */
-        --header-height: 110px;
+        /* Adjust header height for smaller screens if needed, ensure it's enough */
+        --header-height: 130px; /* Might need slight adjustment */
     }
 
     header h1 { font-size: 2em; }
@@ -295,9 +290,8 @@ footer a.back-to-top:hover {
         height: 35px;
         font-size: 1em;
     }
-    /* Ensure header container respects button space */
      header .container {
-        padding-left: 55px; /* Space for button */
+        padding-left: 55px; /* Make space for button */
         padding-right: 15px;
     }
 
@@ -308,17 +302,17 @@ footer a.back-to-top:hover {
     .info-text { font-size: 1em; }
 
      main {
-        padding-bottom: 80px; /* Adjust main padding bottom if needed */
+        padding-bottom: 80px;
     }
 }
 @media (max-width: 480px) {
      :root {
-        --header-height: 100px; /* Even smaller header */
+        --header-height: 120px; /* Adjust for smallest screens */
     }
      header h1 { font-size: 1.8em; }
      header p { font-size: 0.9em; margin-bottom: 10px;}
-     header nav ul li { margin: 0 5px; } /* Tighter spacing */
+     header nav ul li { margin: 0 5px; }
      header .container {
-        padding-left: 50px;
+        padding-left: 50px; /* Adjust if needed */
      }
 }
